@@ -1,0 +1,13 @@
+import java.util.List;
+
+public interface UserMapper {
+	public User getUser(int id);
+	
+	public boolean addUser(User user);
+	
+	public boolean deleteUsere(int id);
+	
+	public List<User> getUsers();
+	
+	public void updateUser(User user);
+}
