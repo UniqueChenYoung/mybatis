@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+		<!-- 获取外部的属性文件 -->
+	<properties resource="db.properties"/>
+	<typeAliases>
+	<!-- 给User类取了一个别名user -->
+		<typeAlias  type="com.mybatis01.beans.User" alias="user"/>
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="username" value="${user}"></property>
+				<property name="password" value="${password}"></property>
+				<property name="url" value="${jdbcUrl}"></property>
+				<property name="driver" value="${driverClass}"></property>
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="com/mybatis01/mapping/userMapper2.xml"/>
+	</mappers>
+
+</configuration>
