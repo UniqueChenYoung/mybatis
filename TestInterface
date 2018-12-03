@@ -1,0 +1,29 @@
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import com.mybatis01.beans.User;
+import com.mybatis01.beans.UserMapper;
+
+public class TestInterface {
+	public static void main(String[] args) throws IOException {
+		SqlSession session = null;
+		String resources = "interface-config.xml";
+		InputStream input = Resources.getResourceAsStream(resources);
+		SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(input);
+		session = sessionFactory.openSession(true);
+		
+		UserMapper userMapper = session.getMapper(UserMapper.class);
+		
+		User user = userMapper.getUser(1);
+		System.out.println(user);
+		
+		User user2 = new User(10, "Daniel", "female");
+		boolean b =userMapper.addUser(user2);
+		System.out.println(b);
+	}
+}
